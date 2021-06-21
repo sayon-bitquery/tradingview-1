@@ -55,7 +55,25 @@ async function fetchData(){
 
   // ------------------------------------------- Lightweight chart ------------------------------------------------------
   const chart = LightweightCharts.createChart(document.body, { width: 600, height: 400 });
+  
   const lineSeries = chart.addLineSeries();
+  
+  lineSeries.applyOptions({
+    color: '#27AE60',
+    lineWidth: 3,
+  });
+
+  chart.applyOptions({
+    watermark: {
+        color: '#F4D03F',
+        visible: true,
+        text: 'TradingView Chart Example',
+        fontSize: 24,
+        horzAlign: 'center',
+        vertAlign: 'center',
+    },    
+  })
+  
   // set data
   lineSeries.setData([
       { time: '2021-06-01', value: data.data.ethereum.dexTrades[0].maximum_price*Math.pow(10,12) },
