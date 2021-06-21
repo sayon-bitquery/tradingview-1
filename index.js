@@ -55,7 +55,18 @@ async function fetchData(){
 
   // ------------------------------------------- Lightweight chart ------------------------------------------------------
   const chart = LightweightCharts.createChart(document.body, { width: 400, height: 300 });
-  const candlestickSeries = chart.addCandlestickSeries();
+  const candlestickSeries = chart.addCandlestickSeries({
+    upColor: '#27AE60',
+    downColor: '#E74C3C',
+    borderVisible: true,
+    wickVisible: true,
+    borderColor: '#E74C3C',
+    wickColor: '#5499C7',
+    borderUpColor: '#4682B4',
+    borderDownColor: '#A52A2A',
+    wickUpColor: '#4682B4',
+    wickDownColor: '#A52A2A',
+  });
   chart.applyOptions({
     upColor: 'rgba(255, 0, 0, 1)',
     downColor: 'rgba(0, 255, 0, 1)',
