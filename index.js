@@ -39,45 +39,21 @@ const QUERY = `
 const endpoint = "https://graphql.bitquery.io/";
 
 // Function which fetches the data from the API
-async function fetchData(){
-    // const data = await fetch(endpoint, {
-    //    method: "POST",
-    //    headers: {
-    //        "Content-Type": "application/json",
-    //        "X-API-KEY": "BQYUGuoO6tZKM20I0lfBNCTEC4ouBCT1"
-    //    },
-    //    body: JSON.stringify({
-    //        query: QUERY
-    //    })
-    //  }).then((response) => response.json()).then((data)=> data.data);  
+async function fetchData(){  
   const response = await fetch(endpoint, {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
-        "X-API-KEY": "BQYUGuoO6tZKM20I0lfBNCTEC4ouBCT1"
+        "X-API-KEY": "YOUR BITQUERY API KEY"
     },
     body: JSON.stringify({
         query: QUERY
     })
   });  
-
-  // console.log(response);
-  const data = await response.json(); 
-  console.log(data.data.ethereum.dexTrades);
-  const candleStickDataTime = data.data.ethereum.dexTrades[0].timeInterval.minute; 
-  const candleStickDataHigh = data.data.ethereum.dexTrades[0].maximum_price*Math.pow(10,12); 
-  const candleStickDataLow = data.data.ethereum.dexTrades[0].minimum_price*Math.pow(10,12); 
-  const candleStickDataOpen = data.data.ethereum.dexTrades[0].open_price*Math.pow(10,12); 
-  const candleStickDataClose = data.data.ethereum.dexTrades[0].close_price*Math.pow(10,12); 
-  console.log(candleStickDataTime);
-  console.log(candleStickDataHigh);
-  console.log(candleStickDataLow);
-  console.log(candleStickDataOpen);
-  console.log(candleStickDataClose); 
   
+  const data = await response.json(); 
 
-
-// ---------------- Lightweight chart --------------------
+  // ------------------------------------------- Lightweight chart ------------------------------------------------------
   const chart = LightweightCharts.createChart(document.body, { width: 400, height: 300 });
   const candlestickSeries = chart.addCandlestickSeries();
   chart.applyOptions({
@@ -103,27 +79,6 @@ async function fetchData(){
       { time: '2019-01-02', open: data.data.ethereum.dexTrades[14].open_price*Math.pow(10,12), high: data.data.ethereum.dexTrades[14].maximum_price*Math.pow(10,12), low:data.data.ethereum.dexTrades[14].minimum_price*Math.pow(10,12), close: data.data.ethereum.dexTrades[14].close_price*Math.pow(10,12) },
       { time: '2019-01-03', open: data.data.ethereum.dexTrades[15].open_price*Math.pow(10,12), high: data.data.ethereum.dexTrades[15].maximum_price*Math.pow(10,12), low:data.data.ethereum.dexTrades[15].minimum_price*Math.pow(10,12), close: data.data.ethereum.dexTrades[15].close_price*Math.pow(10,12) },
   ]);
-  //console.log(data.data.ethereum.dexTrades);  // Returns the data successfully  
 }
-
-// // ---------------- Lightweight chart --------------------
-// const chart = LightweightCharts.createChart(document.body, { width: 400, height: 300 });
-// const candlestickSeries = chart.addCandlestickSeries();
-// // set data
-// candlestickSeries.setData([
-//     { time: '2018-12-19', open: 141.77, high: 170.39, low: 120.25, close: 145.72 },
-//     { time: '2018-12-20', open: 145.72, high: 147.99, low: 100.11, close: 108.19 },
-//     { time: '2018-12-21', open: 108.19, high: 118.43, low: 74.22, close: 75.16 },
-//     { time: '2018-12-22', open: 75.16, high: 82.84, low: 36.16, close: 45.72 },
-//     { time: '2018-12-23', open: 45.12, high: 53.90, low: 45.12, close: 48.09 },
-//     { time: '2018-12-24', open: 60.71, high: 60.71, low: 53.39, close: 59.29 },
-//     { time: '2018-12-25', open: 68.26, high: 68.26, low: 59.04, close: 60.50 },
-//     { time: '2018-12-26', open: 67.71, high: 105.85, low: 66.67, close: 91.04 },
-//     { time: '2018-12-27', open: 91.04, high: 121.40, low: 82.70, close: 111.40 },
-//     { time: '2018-12-28', open: 111.51, high: 142.83, low: 103.34, close: 131.25 },
-//     { time: '2018-12-29', open: 131.33, high: 151.17, low: 77.68, close: 96.43 },
-//     { time: '2018-12-30', open: 106.33, high: 110.20, low: 90.39, close: 98.10 },
-//     { time: '2018-12-31', open: 109.87, high: 114.69, low: 85.66, close: 111.26 },
-// ]);
 
 fetchData();
